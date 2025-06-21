@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Prata&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Italiana&family=Itim&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -10,16 +10,55 @@ a.active hr {
 
 *{
     font-family: Outfit;
-    
 }
 
-.prata-regular {
-    font-family: "Prata", serif;
-    font-weight: 400;
+  .itim-regular {
+    font-family: "Itim", cursive;
+    font-weight: 600;
+    font-style: normal;
+    letter-spacing: 3px;
+  }
+  .itim-regular-bold {
+    font-family: "Itim", cursive;
+    font-weight: 800;
     font-style: normal;
   }
 
+  .italiana-regular {
+    font-family: "Italiana", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+  }
+
+  .instrument-sans-regular {
+    font-family: "Instrument Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings:
+      "wdth" 100;
+  }
+
+  .container{
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+  
+
   ::-webkit-scrollbar{display: none;}
+
+  *{
+    --gray: #1A1A1A;
+    --black: #000000;
+    --red-dark: #9B1313;
+    --red: #CD1C18;
+    --peach: #ff5f5f;
+    --peach-light: #ffaeae;
+    --green: #69af6d;
+  }
 
   @media (max-width:640px){
     a.active{
