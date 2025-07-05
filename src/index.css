@@ -8,10 +8,6 @@ a.active hr {
     display: block;
 }
 
-*{
-    font-family: Outfit;
-}
-
   .itim-regular {
     font-family: "Itim", cursive;
     font-weight: 600;
@@ -56,8 +52,10 @@ a.active hr {
     --red-dark: #9B1313;
     --red: #CD1C18;
     --peach: #ff5f5f;
-    --peach-light: #ffaeae;
+    --peach-dark: #fd4e4e;
+    --peach-light: #fa8f8f;
     --green: #69af6d;
+    --green-2: #75b878;
   }
 
   @media (max-width:640px){

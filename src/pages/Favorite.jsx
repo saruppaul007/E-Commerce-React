@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { ShopContext } from '../context/ShopContext';
 import Title from '../components/Title';
 import { assets } from '../assets/assets';
+import PageSection from '../components/PageSection';
 
 const Favorite = () => {
   const { products, currency, wishlistItems, removeFromWishlist, addToCart, navigate } = useContext(ShopContext);
@@ -58,16 +59,17 @@ const Favorite = () => {
   };
 
   return (
-    <div className=" pt-28 ">
-      <div className="max-w-6xl mx-auto px-4">
+    <PageSection >
+    <div className=" pt-20 ">
+      <div className="max-w-7xl mx-auto px-2">
         {wishlistData.length === 0 ? (
           // Empty Wishlist UI
           <div className="text-center py-7 bg-white rounded-lg shadow-sm">
             <div className="mx-auto mb-6 w-30 h-40 flex items-center justify-center">
               {/* Empty Wishlist Icon as placeholder */}
               
-  <img src={assets.empty_wishlist_icon} alt="Empty Wishlist" className="mx-auto mb-6 w-30 h-40" />
-</div>
+              <img src={assets.empty_wishlist_icon} alt="Empty Wishlist" className="mx-auto mb-6 w-30 h-40" />
+            </div>
             <h2 className="text-2xl font-semibold mb-2 text-[--gray] instrument-sans-regular">Your wishlist is lonely and looking for love.</h2>
             <p className="text-gray-600 mb-8 max-w-lg mx-auto instrument-sans-regular">Add products to your wishlist, review them anytime and easily move to cart.</p>
             
@@ -91,10 +93,10 @@ const Favorite = () => {
           <div className="bg-white rounded-lg shadow-sm p-1">
             <div className="text-2xl mb-3 text-center">
               <Title text1="YOUR" text2="WISHLIST" />
-              <p className="text-sm text-gray-600 mt-0">{wishlistData.length} item{wishlistData.length !== 1 ? 's' : ''} in your wishlist</p>
+              <p className="text-sm text-gray-600 mt-0 instrument-sans-regular">{wishlistData.length} item{wishlistData.length !== 1 ? 's' : ''} in your wishlist</p>
             </div>
             
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-6">
               {wishlistData.map((item, index) => {
                 const productData = products.find((product) => product._id === item._id);
                 
@@ -140,16 +142,16 @@ const Favorite = () => {
                         {currency}{productData.price}
                       </p>
 
-                      {/* Size Selection */}
+                      {/* Size Selection - Hidden on mobile (sm and below) */}
                       {productData.sizes && productData.sizes.length > 0 && (
-                        <div className="mb-4">
+                        <div className="mb-4 hidden sm:block">
                           <p className="text-sm text-gray-600 mb-2 instrument-sans-regular">Select Size:</p>
                           <div className="flex flex-wrap gap-1">
                             {productData.sizes.map((size, sizeIndex) => (
                               <button
                                 key={sizeIndex}
                                 onClick={() => handleSizeSelection(item._id, size)}
-                                className={`px-3 py-1 border rounded text-xs cursor-pointer instrument-sans-regular transition-all duration-200 ${
+                                className={`px-[9px] py-1 border rounded text-xs cursor-pointer instrument-sans-regular transition-all duration-200 ${
                                   selectedSize === size
                                     ? 'border-[--green] bg-[--green] text-white'
                                     : 'border-gray-300 hover:border-[--green] hover:text-[--green]'
@@ -174,8 +176,8 @@ const Favorite = () => {
                         </div>
                       )}
 
-                      {/* Action Buttons */}
-                      <div className="flex gap-2">
+                      {/* Action Buttons - Hidden on mobile (sm and below) */}
+                      <div className="flex gap-2 hidden sm:flex">
                         <button
                           onClick={() => handleMoveToCart(item._id)}
                           className={`flex-1 py-2 px-4 rounded text-md font-bold transition duration-300 instrument-sans-regular ${
@@ -207,6 +209,8 @@ const Favorite = () => {
         )}
       </div>
     </div>
+
+    </PageSection>
   );
 };
 

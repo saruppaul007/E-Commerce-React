@@ -85,67 +85,81 @@ const Product = () => {
             <hr />
             <p className='mt-3 text-3xl font-medium instrument-sans-regular'>{currency}{productData.price}</p>
             <p className='text-gray-400 text-xs instrument-sans-regular'>MRP incl. of all taxes</p>
-            
-            <div className='flex flex-col gap-4 my-4 '>
-              <p className='font-bold instrument-sans-regular'>Please Select a Size</p>
-              <div className='flex gap-2'>
-                {productData.sizes.map((item, index) => (
-                  <button onClick={() => setSize(item)} className= {`border border-gray-500 py-2 px-4 bg-white rounded-lg instrument-sans-regular ${item === size ? 'border-green-500' :  ''}`} key={index}>{item}</button>
-                ))}
-              </div>
-            </div>
 
-            {/* Quantity Selector */}
-             <div className='flex items-center gap-4 my-4'>
-              <p className='instrument-sans-regular'>Quantity</p>
-              <select 
-                value={quantity} 
-                onChange={(e) => setQuantity(Number(e.target.value))}
-                className='border border-gray-500 py-2 px-3 rounded-lg bg-white text-sm instrument-sans-regular focus:outline-none focus:border-green-500'
-              >
-                {[...Array(10)].map((_, i) => (
-                  <option key={i + 1} value={i + 1}>
-                    {String(i + 1).padStart(2, '0')}
-                  </option>
-                ))}
-              </select>
-            </div>
 
-            <button 
-              onClick={handleAddToWishlist} 
-              className={`px-8 py-3 text-sm mr-5 mb-5 rounded-md border instrument-sans-regular transition-colors ${
-                isInWishlist(productData._id) 
-                  ? 'bg-red-500 text-white hover:bg-red-600 border-red-500' 
-                  : 'bg-[--peach] text-white hover:bg-[#ff4646] hover:text-white'
-              }`}
-            >
-              {isInWishlist(productData._id) ? 'REMOVE FROM WISHLIST' : 'ADD TO WISHLIST'}
-            </button>
+<div className='flex flex-col gap-4 my-4'>
+  <p className='font-bold instrument-sans-regular'>Please Select a Size</p>
+  <div className='flex gap-2 flex-wrap'>
+    {productData.sizes.map((item, index) => (
+      <button 
+        onClick={() => setSize(item)} 
+        className={`border py-2 px-4 bg-white rounded-lg instrument-sans-regular min-w-[50px] ${
+          item === size ? 'border-orange-500 bg-orange-50' : 'border-gray-300'
+        }`} 
+        key={index}
+      >
+        {item}
+      </button>
+    ))}
+  </div>
+</div>
 
-            <button 
-              onClick={handleAddToCart} 
-              className='bg-white text-black px-8 py-3 text-sm hover:bg-black hover:text-white border border-black rounded-md instrument-sans-regular'
-            >
-              ADD TO CART
-            </button>
-            
-            <h3 className="text-lg font-medium text-gray-800 mb-4 instrument-sans-regular">Delivery Details</h3>
-            <div className="flex items-center gap-2">
-              <input
-                type="text"
-                placeholder="Enter Pincode"
-                value={pincode}
-                onChange={(e) => setPincode(e.target.value)}
-                className="flex-1 px-4 py-2 border border-gray-300 rounded-md text-sm instrument-sans-regular placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
-              />
-              <button
-                onClick={handleCheck}
-                className="px-6 py-2 bg-[#69af6d]  text-white text-sm font-medium rounded-md instrument-sans-regular transition-colors"
-              >
-                CHECK
-              </button>
-            </div>
+{/* Quantity Selector */}
+<div className='flex items-center gap-4 my-4'>
+  <p className='instrument-sans-regular'>Quantity</p>
+  <select 
+    value={quantity} 
+    onChange={(e) => setQuantity(Number(e.target.value))}
+    className='border border-gray-300 py-2 px-3 rounded-lg bg-white text-sm instrument-sans-regular focus:outline-none focus:border-orange-500 min-w-[80px]'
+  >
+    {[...Array(10)].map((_, i) => (
+      <option key={i + 1} value={i + 1}>
+        {String(i + 1).padStart(2, '0')}
+      </option>
+    ))}
+  </select>
+</div>
 
+{/* Buttons - Full width on mobile */}
+<div className='flex flex-col lg:flex-row gap-3 lg:gap-5 my-4'>
+  <button 
+    onClick={handleAddToWishlist} 
+    className={`w-full lg:w-auto px-8 py-3 text-sm rounded-md border instrument-sans-regular transition-colors ${
+      isInWishlist(productData._id) 
+        ? 'bg-red-500 text-white hover:bg-red-600 border-red-500' 
+        : 'bg-[--peach] text-white hover:bg-[#ff4646] hover:text-white border-[--peach]'
+    }`}
+  >
+    {isInWishlist(productData._id) ? 'REMOVE FROM WISHLIST' : 'ADD TO WISHLIST'}
+  </button>
+
+  <button 
+    onClick={handleAddToCart} 
+    className='w-full lg:w-auto bg-white text-black px-8 py-3 text-sm hover:bg-black hover:text-white border border-black rounded-md instrument-sans-regular'
+  >
+    ADD TO CART
+  </button>
+</div>
+
+{/* Delivery Details */}
+<div className='my-6'>
+  <h3 className="text-lg font-medium text-gray-800 mb-4 instrument-sans-regular">Delivery Details</h3>
+  <div className="flex items-center gap-2">
+    <input
+      type="text"
+      placeholder="Enter Pincode"
+      value={pincode}
+      onChange={(e) => setPincode(e.target.value)}
+      className="flex-1 px-4 py-2 border border-gray-300 rounded-md text-sm instrument-sans-regular placeholder-gray-400 focus:outline-none focus:border-green-500 focus:ring-1 focus:ring-green-500"
+    />
+    <button
+      onClick={handleCheck}
+      className="px-6 py-2 bg-[#69af6d] text-white text-sm font-medium rounded-md instrument-sans-regular transition-colors hover:bg-[#5a9b5f]"
+    >
+      CHECK
+    </button>
+  </div>
+</div>
             <div className='flex items-center gap-2 '>
               <div className='border border-opacity-5 shadow-md rounded-md p-2 mt-3'>
                 <p className='instrument-sans-regular text-gray-600'>This product is eligible for return or exchange under our 15-day return or exchange policy. No questions asked.</p>

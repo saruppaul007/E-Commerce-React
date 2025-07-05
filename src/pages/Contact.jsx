@@ -8,7 +8,7 @@ import PageSection from '../components/pageSection'
 
 const Contact = () => {
   return (
-    <div className=' text-center pt-8 mt-[81px]'>
+    <div className=' text-center pt-8 mt-[60px]'>
       <PageSection>
 
       <div className='text-2xl'>
@@ -79,15 +79,14 @@ const Contact = () => {
         <div className="w-full px-4 lg:w-1/2 xl:w-5/12">
           <div className="relative rounded-lg bg-white p-8 shadow-lg sm:p-12 dark:bg-dark-2">
             <form>
-              <div className="mb-6 flex gap-3">
+              <div className="mb-4 flex gap-3">
                 <input type="text" placeholder="Your Name"
-                  className="w-full rounded-lg border border-stroke px-[14px] py-3 text-base text-body-color outline-hidden focus:border-primary dark:border-dark-3 dark:bg-dark dark:text-dark-6" />
-                  <input type="text" placeholder="Your Phone"
-                  className="w-full rounded-lg border border-stroke px-[14px] py-3 text-base text-body-color outline-hidden focus:border-primary dark:border-dark-3 dark:bg-dark dark:text-dark-6" />
+                  className="w-full rounded-lg border border-stroke px-[14px] py-3 text-base text-body-color focus:outline-none focus:border-[--green]  instrument-sans-regular" />
+                  <input type="number" placeholder="Phone Number" className="w-full rounded-lg border border-stroke px-[14px] py-3 text-base text-body-color focus:outline-none  focus:border-[--green] instrument-sans-regular" />
               </div>
-              <div className="mb-6">
+              <div className="mb-4">
                 <input type="email" placeholder="Your Email"
-                  className="w-full rounded-lg border border-stroke px-[14px] py-3 text-base text-body-color outline-hidden focus:border-primary dark:border-dark-3 dark:bg-dark dark:text-dark-6" />
+                  className="w-full rounded-lg border border-stroke px-[14px] py-3 text-base text-body-color focus:outline-none focus:border-[--green] instrument-sans-regular" />
               </div>
               
               <div className="mb-6">
@@ -127,11 +126,11 @@ const Contact = () => {
 
               <div className="mb-6">
                 <textarea rows="5" placeholder="Your Message"
-                  className="w-full resize-none rounded-lg border border-stroke px-[14px] py-3 text-base text-body-color outline-hidden focus:border-primary "></textarea>
+                  className="w-full resize-none rounded-lg border border-stroke px-[14px] py-3 text-base text-body-color focus:outline-none focus:border-[--green] instrument-sans-regular"></textarea>
               </div>
               <div>
                 <button type="submit"
-                  className="w-full rounded-lg border border-primary bg-primary p-3 text-white transition bg-[--green] hover:bg-[--gray] instrument-sans-regular">
+                  className="w-full rounded-lg border p-3 text-white transition bg-[--green] hover:bg-[--green-2] instrument-sans-regular focus:[--green]">
                   Send Message
                 </button>
               </div>

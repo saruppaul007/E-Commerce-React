@@ -21,46 +21,97 @@ const Hero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
   const [textAnimationKey, setTextAnimationKey] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
 
-  // Updated hero slides data with explicit image paths
+  // Check if the device is mobile (not tablet)
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 480); // Mobile only, tablets use desktop images
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Updated hero slides data with both desktop and mobile images
   const heroSlides = [
     {
       id: 1,
       title: "YOUR ESCAPE, YOUR STYLE",
       subtitle: "BREEZY | MINIMAL TO BOLD PRINTS",
-      image: assets.heroMain_img3, // Ensure this path is correct
+      mobileTitle: "YOUR STYLE",
+      mobileSubtitle: "BREEZY | MINIMAL",
+      desktopImage: assets.heroMain_img3,
+      mobileImage: assets.heroMobile_img1,
     },
     {
       id: 2,
       title: "EXCLUSIVE DESIGNS",
       subtitle: "PREMIUM | LUXURY FASHION",
-      image: assets.heroMain_img,
+      mobileTitle: "EXCLUSIVE",
+      mobileSubtitle: "PREMIUM | LUXURY",
+      desktopImage: assets.heroMain_img,
+      mobileImage: assets.heroMobile_img2,
     },
     {
       id: 3,
       title: "TRENDY STYLES",
       subtitle: "MODERN | CONTEMPORARY FASHION",
-      image: assets.heroMain_img4,
+      mobileTitle: "TRENDY",
+      mobileSubtitle: "MODERN | CONTEMPORARY",
+      desktopImage: assets.heroMain_img4,
+      mobileImage: assets.heroMobile_img3,
     },
     {
       id: 4,
       title: "WINTER COLLECTION",
       subtitle: "COZY | WARM & STYLISH",
-      image: assets.heroMain_img6,
+      mobileTitle: "WINTER",
+      mobileSubtitle: "COZY | WARM",
+      desktopImage: assets.heroMain_img6,
+      mobileImage: assets.heroMobile_img4,
     },
     {
       id: 5,
       title: "SUMMER COLLECTION",
       subtitle: "FRESH | VIBRANT COLORS",
-      image: assets.heroMain_img5,
+      mobileTitle: "SUMMER",
+      mobileSubtitle: "FRESH | VIBRANT",
+      desktopImage: assets.heroMain_img5,
+      mobileImage: assets.heroMobile_img5,
     },
     {
       id: 6,
       title: "GEAR UP FOR ACTION",
       subtitle: "PERFORMANCE | COMFORT MEETS STYLE",
-      image: assets.heroMain_img2,
+      mobileTitle: "GEAR UP",
+      mobileSubtitle: "PERFORMANCE | COMFORT",
+      desktopImage: assets.heroMain_img2,
+      mobileImage: assets.heroMobile_img6,
     },
   ];
+
+  // Get the current image based on device type
+  const getCurrentImage = () => {
+    return isMobile 
+      ? heroSlides[currentSlide].mobileImage 
+      : heroSlides[currentSlide].desktopImage;
+  };
+
+  // Get the current text based on device type
+  const getCurrentTitle = () => {
+    return isMobile 
+      ? heroSlides[currentSlide].mobileTitle 
+      : heroSlides[currentSlide].title;
+  };
+
+  const getCurrentSubtitle = () => {
+    return isMobile 
+      ? heroSlides[currentSlide].mobileSubtitle 
+      : heroSlides[currentSlide].subtitle;
+  };
 
   // Trigger animations on component mount
   useEffect(() => {
@@ -116,7 +167,7 @@ const Hero = () => {
           <div
             className="absolute inset-0 w-full h-full animate-zoom-slow"
             style={{
-              backgroundImage: `url(${heroSlides[currentSlide].image})`,
+              backgroundImage: `url(${getCurrentImage()})`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat',
@@ -155,25 +206,25 @@ const Hero = () => {
           <div className="text-center z-10 px-4">
             <h1 
               key={`title-${textAnimationKey}`}
-              className={`text-4xl md:text-5xl lg:text-4xl xl:text-5xl font-light text-white mb-4 tracking-wider drop-shadow-2xl italiana-regular transition-all duration-1000 ease-out ${
+              className={`text-lg sm:text-xl md:text-2xl lg:text-4xl xl:text-5xl font-light text-white mb-3 tracking-wider drop-shadow-2xl italiana-regular transition-all duration-1000 ease-out ${
                 isLoaded 
                   ? 'opacity-100 transform translate-y-0' 
                   : 'opacity-0 transform translate-y-12'
               }`}
               style={{ transitionDelay: '600ms' }}
             >
-              {heroSlides[currentSlide].title}
+              {getCurrentTitle()}
             </h1>
             <p 
               key={`subtitle-${textAnimationKey}`}
-              className={`text-base md:text-lg lg:text-xl text-white/90 font-light tracking-widest uppercase drop-shadow-lg instrument-sans-regular transition-all duration-1000 ease-out ${
+              className={`text-xs sm:text-sm md:text-md lg:text-xl text-white/90 font-light tracking-widest uppercase drop-shadow-lg instrument-sans-regular transition-all duration-1000 ease-out ${
                 isLoaded 
                   ? 'opacity-100 transform translate-y-0' 
                   : 'opacity-0 transform translate-y-12'
               }`}
               style={{ transitionDelay: '900ms' }}
             >
-              {heroSlides[currentSlide].subtitle}
+              {getCurrentSubtitle()}
             </p>
           </div>
 

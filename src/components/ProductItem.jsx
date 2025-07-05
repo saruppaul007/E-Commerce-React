@@ -11,10 +11,10 @@ const ProductItem = ({id, image, name, price, isWishlisted, onWishlistToggle}) =
 
   return (
     <div className='relative group'>
-      {/* Wishlist Icon */}
+      {/* Wishlist Icon - Now permanently visible */}
       <button
         onClick={onWishlistToggle}
-        className='absolute top-2 right-2 z-10 p-2 bg-white rounded-full shadow-md hover:shadow-lg transition-all duration-200 opacity-0 group-hover:opacity-100'
+        className='absolute top-2 right-2 z-10 p-2 bg-white/90 backdrop-blur-sm rounded-full shadow-md hover:shadow-lg hover:bg-white transition-all duration-200 hover:scale-110'
       >
         <svg
           className={`w-5 h-5 transition-colors ${
