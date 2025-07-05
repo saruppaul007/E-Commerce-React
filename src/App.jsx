@@ -11,10 +11,10 @@ import Profile from './pages/profile/MyProfile'
 import PlaceOrder from './pages/PlaceOrder'
 import Navbar from './components/Navbar/Navbar'
 import Footer from './components/Footer'
-import ScrollToTop from './components/ScrollToTop' // Add this import
+import ScrollToTop from './components/ScrollToTop'
 import Favorite from './pages/Favorite'
 import BestSellers from './pages/BestSellers'
-import FashionPreloader from './components/Preloader' // Add this import
+import Preloader from './components/preloader/Preloader' // Fixed import name
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -29,14 +29,12 @@ const App = () => {
   return (
     <div className=''>
       {isLoading ? (
-        <FashionPreloader 
+        <Preloader 
           onComplete={handlePreloaderComplete}
-          duration={1500} // 1.5 seconds loading time
+          duration={1500}
         />
       ) : (
         <>
-          {/* px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw] */}
-          
           <ToastContainer />
           <Navbar />
           <Routes>
@@ -49,15 +47,12 @@ const App = () => {
             <Route path ='/login' element={<Login />} />
             <Route path='/profile' element={<Profile />} />
             <Route path ='/place-order' element={<PlaceOrder />} />
-            {/* Remove separate orders route since it's now handled within profile */}
-            {/* <Route path ='/orders' element={<Orders />} /> */}
             <Route path = '/favorite' element={<Favorite />} />
             <Route path='/bestsellers' element={<BestSellers />} />
           </Routes>
 
           <Footer />
           
-          {/* ScrollToTop Button - Available on all pages */}
           <ScrollToTop />
         </>
       )}

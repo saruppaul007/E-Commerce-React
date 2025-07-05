@@ -1,0 +1,178 @@
+/* Preloader.css */
+
+.preloader-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--peach-light);
+  transition: all 1s ease-in-out;
+}
+
+.preloader-slide-up {
+  transform: translateY(100%);
+}
+
+.preloader-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  transition: all 0.5s ease-in-out;
+}
+
+.preloader-ring {
+  position: relative;
+  width: 6rem;
+  height: 6rem;
+  animation: fadeInUp 1s ease-out forwards;
+}
+
+.preloader-svg {
+  width: 6rem;
+  height: 6rem;
+}
+
+.preloader-bg-circle {
+  transition: opacity 0.3s ease;
+}
+
+.preloader-spinner {
+  transform-origin: 50% 50%;
+}
+
+.preloader-spin {
+  animation: spin 1.2s linear infinite;
+}
+
+.preloader-checkmark {
+  animation: fadeInUp 1s ease-out forwards;
+}
+
+.preloader-text {
+  text-align: center;
+}
+
+.preloader-title {
+  font-size: 2.5rem;
+  font-weight: 100;
+  color: white;
+  margin-bottom: 0.5rem;
+  font-family: 'Italiana', serif;
+  transition: all 0.5s ease;
+  opacity: 0.8;
+  animation: typewriter 2s steps(13) forwards, blink 1s infinite;
+  overflow: hidden;
+  border-right: 2px solid white;
+  white-space: nowrap;
+}
+
+.preloader-title-complete {
+  opacity: 1;
+}
+
+.preloader-message {
+  color: white;
+  opacity: 0.7;
+  font-size: 0.875rem;
+  margin-top: 1rem;
+  animation: slideUp 0.6s ease-out forwards;
+}
+
+.preloader-progress {
+  color: white;
+  opacity: 0.6;
+  font-size: 0.875rem;
+  font-weight: 300;
+  transition: all 0.3s ease;
+  animation: fadeInUp 1s ease-out forwards;
+  animation-delay: 0.5s;
+}
+
+.preloader-progress-hidden {
+  opacity: 0;
+}
+
+.preloader-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0.05;
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(255,255,255,0.05) 0%, transparent 50%);
+}
+
+.preloader-complete {
+  animation: slideUp 0.8s ease-out forwards;
+}
+
+/* Keyframes */
+@keyframes spin {
+  from { 
+    transform: rotate(0deg); 
+  }
+  to { 
+    transform: rotate(360deg); 
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes typewriter {
+  0% { 
+    width: 0; 
+  }
+  100% { 
+    width: 100%; 
+  }
+}
+
+@keyframes blink {
+  0%, 50% { 
+    border-color: transparent; 
+  }
+  51%, 100% { 
+    border-color: white; 
+  }
+}
+
+@keyframes slideUp {
+  0% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Responsive adjustments */
+@media (min-width: 768px) {
+  .preloader-title {
+    font-size: 3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .preloader-title {
+    font-size: 4rem;
+  }
+}
